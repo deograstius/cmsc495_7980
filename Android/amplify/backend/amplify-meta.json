@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "ndroid-20181113064224-authRole",
+            "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "ndroid-20181113064224-deployment",
+            "UnauthRoleName": "ndroid-20181113064224-unauthRole",
+            "StackName": "ndroid-20181113064224",
+            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181113064224/31d69a20-e739-11e8-8e2f-500c20fcaa99"
+        }
+    }
+}
