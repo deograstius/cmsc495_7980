@@ -1,26 +1,14 @@
 {
-  "providers": {
-    "awscloudformation": {
-      "AuthRoleName": "ndroid-20181113064224-authRole",
-      "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "ndroid-20181113064224-deployment",
-      "UnauthRoleName": "ndroid-20181113064224-unauthRole",
-      "StackName": "ndroid-20181113064224",
-      "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181113064224/31d69a20-e739-11e8-8e2f-500c20fcaa99"
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "ndroid-20181113064224-authRole",
+            "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "ndroid-20181113064224-deployment",
+            "UnauthRoleName": "ndroid-20181113064224-unauthRole",
+            "StackName": "ndroid-20181113064224",
+            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181113064224/31d69a20-e739-11e8-8e2f-500c20fcaa99"
+        }
     }
-  },
-  "api": {
-    "CmscAPI": {
-      "service": "AppSync",
-      "output": {
-        "securityType": "API_KEY",
-        "GraphQLAPIIdOutput": "otnn7ko4zzhy7hnxhukfdz3lvq",
-        "GraphQLAPIEndpointOutput": "https://u4xtz2cmmrhbrbilsu3zqvkhha.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-aky4caqhcnahblve7yrg2udzfi"
-      },
-      "lastPushTimeStamp": "2018-11-15T00:30:24.915Z"
-    }
-  }
 }

@@ -1,9 +1,0 @@
-# this is an auto generated file. This will be overwritten
-subscription SubscribeToSession($SessionId: ID!, $UserId: ID!) {
-  subscribeToSession(SessionId: $SessionId, UserId: $UserId) {
-    recordId
-    timestamp
-    frequency
-    records
-  }
-}
