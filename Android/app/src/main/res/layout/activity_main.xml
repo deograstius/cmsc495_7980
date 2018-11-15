@@ -20,6 +20,7 @@
         <EditText
             android:id="@+id/emailTextField"
             android:hint="@string/email"
+            android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,6 +31,7 @@
         <EditText
             android:id="@+id/passwordTextField"
             android:hint="@string/password"
+            android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:textColor="@color/black"
                 android:layout_weight="1"
                 android:text="@string/log_in" />
 
@@ -54,6 +57,8 @@
                 android:id="@+id/sign_up"
                 android:layout_width="wrap_content"
                 android:backgroundTint="@color/white"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_up" />
