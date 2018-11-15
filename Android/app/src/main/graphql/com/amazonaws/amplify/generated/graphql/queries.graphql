@@ -1,0 +1,52 @@
+# this is an auto generated file. This will be overwritten
+query GetRecords($SessionId: ID!) {
+  getRecords(SessionId: $SessionId) {
+    recordId
+    timestamp
+    frequency
+    records
+  }
+}
+query GetSession($UserId: String) {
+  getSession(UserId: $UserId) {
+    sessionId
+    record {
+      recordId
+      timestamp
+      frequency
+      records
+    }
+  }
+}
+query GetDevice($DeviceId: ID) {
+  getDevice(DeviceId: $DeviceId) {
+    deviceId
+    user {
+      userId
+      name
+    }
+    deviceStatus
+  }
+}
+query GetAccount($UserId: ID) {
+  getAccount(UserId: $UserId) {
+    userId
+    device {
+      deviceId
+      deviceStatus
+    }
+    archive {
+      archiveId
+      records {
+        recordId
+        timestamp
+        frequency
+        records
+      }
+    }
+    session {
+      sessionId
+    }
+    name
+  }
+}

@@ -1,0 +1,80 @@
+# this is an auto generated file. This will be overwritten
+mutation RecordUpdate($recordId: ID!) {
+  recordUpdate(recordId: $recordId) {
+    recordId
+    timestamp
+    frequency
+    records
+  }
+}
+mutation RecordCreate(
+  $recordId: ID!
+  $records: [Float]
+  $frequency: Int
+  $timestamp: AWSTimestamp
+) {
+  recordCreate(
+    recordId: $recordId
+    records: $records
+    frequency: $frequency
+    timestamp: $timestamp
+  ) {
+    recordId
+    timestamp
+    frequency
+    records
+  }
+}
+mutation DeviceCreate($deviceId: ID!) {
+  deviceCreate(deviceId: $deviceId) {
+    deviceId
+    user {
+      userId
+      name
+    }
+    deviceStatus
+  }
+}
+mutation AddDeviceUser($UserId: ID!) {
+  addDeviceUser(UserId: $UserId) {
+    deviceId
+    user {
+      userId
+      name
+    }
+    deviceStatus
+  }
+}
+mutation AccountCreate($UserId: ID!) {
+  accountCreate(UserId: $UserId) {
+    userId
+    device {
+      deviceId
+      deviceStatus
+    }
+    archive {
+      archiveId
+      records {
+        recordId
+        timestamp
+        frequency
+        records
+      }
+    }
+    session {
+      sessionId
+    }
+    name
+  }
+}
+mutation SessionCreate($SessionId: ID!) {
+  sessionCreate(SessionId: $SessionId) {
+    sessionId
+    record {
+      recordId
+      timestamp
+      frequency
+      records
+    }
+  }
+}
