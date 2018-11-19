@@ -6,6 +6,7 @@ package capstone.cmsc495.ekganalyzer;
  * @version 1
  */
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -33,6 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         // Get the action bar with an item
         ActionBar actionBar = getSupportActionBar();
+        System.out.println(actionBar);
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -41,14 +43,24 @@ public class HistoryActivity extends AppCompatActivity {
 
         // Set the drawer layout A.K.A the navigation bar
         drawerLayout = findViewById(R.id.drawer_layout);
+        final HistoryActivity thisActivity = this;
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setChecked(true);
-                drawerLayout.closeDrawers();;
-                return true;
+                drawerLayout.closeDrawers();
+
+                switch (menuItem.getItemId()) {
+                    case R.id.rhythms:
+                        Intent intent = new Intent(thisActivity, RhythmsActivity.class);
+                        startActivity(intent);
+                        return true;
+                    default:
+                        return true;
+
+                }// End switch statement
             }// End onNavigationItemSelected
         });// End closure
     }// End onClick() Method
@@ -58,6 +70,10 @@ public class HistoryActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 drawerLayout.openDrawer(Gravity.START);
+                return true;
+            case R.id.rhythms:
+                Intent intent = new Intent(this, RhythmsActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

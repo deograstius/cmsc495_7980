@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NavigationMenuTheme" parent="Widget.Design.NavigationView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:iconTint">@color/black</item>
+        <item name="android:background">@color/white</item>
+    </style>
+</resources>

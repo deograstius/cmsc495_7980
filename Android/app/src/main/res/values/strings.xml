@@ -6,11 +6,13 @@
     <string name="sign_up">Sign Up</string>
     <string name="sensorID">Sensor ID</string>
     <string name="arrhythmia">Arrhythmia</string>
-    <string name="sinus_rhythm">Sinus Rhythms</string>
+    <string name="sinus_rhythm">Sinus Rhythm</string>
     <string name="atrial_fibrillation">Atrial Fibrillation</string>
     <string name="atrial_flutters">Atrial Flutters</string>
     <string name="asystole">Asystole</string>
     <string name="live_ekg">Live EKG</string>
     <string name="bundle_block">Bundle Block</string>
     <string name="log_out">Log Out</string>
+    <string name="rhythms">Rhythms</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
