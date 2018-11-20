@@ -1,21 +1,32 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        app:showAsAction="never"
+        android:orderInCategory="100"
         android:id="@+id/sinus_rhythm"
         android:title="@string/sinus_rhythm" />
 
     <item
+        app:showAsAction="never"
+        android:orderInCategory="101"
         android:id="@+id/atrial_fibrillation"
         android:title="@string/atrial_fibrillation" />
 
     <item
+        app:showAsAction="never"
+        android:orderInCategory="102"
         android:id="@+id/atrial_flutters"
         android:title="@string/atrial_flutters" />
 
     <item
+        app:showAsAction="never"
+        android:orderInCategory="103"
         android:id="@+id/asystole"
         android:title="@string/asystole" />
 
     <item
+        app:showAsAction="never"
+        android:orderInCategory="104"
         android:id="@+id/bundle_block"
         android:title="@string/bundle_block" />
 </menu>
