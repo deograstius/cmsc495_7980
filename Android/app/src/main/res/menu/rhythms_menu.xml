@@ -1,10 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        android:id="@+id/sinus_rhythm"
-        android:title="@string/sinus_rhythm" />
 
     <item
         app:showAsAction="never"
@@ -29,4 +24,40 @@
         android:orderInCategory="104"
         android:id="@+id/bundle_block"
         android:title="@string/bundle_block" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="105"
+        android:id="@+id/dysrhythmia"
+        android:title="@string/dysrhythmia" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="106"
+        android:id="@+id/heart_failure"
+        android:title="@string/heart_failure" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="107"
+        android:id="@+id/myocardial"
+        android:title="@string/myocardial" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="108"
+        android:id="@+id/myocarditis"
+        android:title="@string/myocarditis" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="109"
+        android:id="@+id/sinus_rhythm"
+        android:title="@string/sinus_rhythm" />
+
+    <item
+        app:showAsAction="never"
+        android:orderInCategory="110"
+        android:id="@+id/valvular_disease"
+        android:title="@string/valvular_disease" />
 </menu>

@@ -11,7 +11,9 @@
         android:theme="@style/AppTheme">
         <service android:name="org.eclipse.paho.android.service.MqttService" />
 
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/log_in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -19,9 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".HistoryActivity" />
-        <activity android:name=".RhythmsActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/sign_up" />
+        <activity
+            android:name=".HistoryActivity"
+            android:label="@string/history" />
+        <activity
+            android:name=".RhythmsActivity"
+            android:label="@string/rhythms" />
+        <activity
+            android:name=".LiveEKGActivity"
+            android:label="@string/live_ekg" />
     </application>
 
 </manifest>

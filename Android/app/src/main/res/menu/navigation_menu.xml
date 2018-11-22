@@ -5,13 +5,18 @@
             android:id="@+id/live_ekg"
             android:title="@string/live_ekg" />
         <item
-            android:icon="@drawable/ic_exit_app"
-            android:id="@+id/log_out"
-            android:title="@string/log_out" />
-        <item
             android:icon="@drawable/ic_pulse"
             android:id="@+id/rhythms"
             android:title="@string/rhythms">
         </item>
+        <item
+            android:icon="@drawable/ic_pulse"
+            android:id="@+id/historyList"
+            android:title="@string/history">
+        </item>
+        <item
+            android:icon="@drawable/ic_exit_app"
+            android:id="@+id/log_out"
+            android:title="@string/log_out" />
     </group>
 </menu>
