@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:icon="@drawable/ic_live_ekg"
+            android:icon="@drawable/ic_noheart_pulse"
             android:id="@+id/live_ekg"
             android:title="@string/live_ekg" />
         <item
-            android:icon="@drawable/ic_pulse"
+            android:icon="@drawable/ic_live_ekg"
             android:id="@+id/rhythms"
             android:title="@string/rhythms">
         </item>
         <item
-            android:icon="@drawable/ic_pulse"
+            android:icon="@drawable/ic_history"
             android:id="@+id/historyList"
             android:title="@string/history">
         </item>

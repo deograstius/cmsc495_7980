@@ -21,7 +21,7 @@
 
     <string name="live_ekg">Live EKG</string>
     <string name="log_out">Log Out</string>
-    <string name="rhythms">&lt;3 Conditions Info</string>
+    <string name="rhythms">Conditions Information</string>
     <string name="history">History</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="normal">Normal</string>
