@@ -8,7 +8,6 @@ package capstone.cmsc495.ekganalyzer;
  */
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.Random;
@@ -30,9 +30,9 @@ public class LiveEKGActivity extends AppCompatActivity {
     private static final int valuesPerSecond = 200;  // Number of EKG data values per second (hertz)
     //private double heartRate;  // Heart rate in bpm
 
-    private LineGraphSeries<DataPoint> mSeries1;
-    private final Handler mHandler = new Handler();
-    private Runnable mTimer1;
+    private static final Random RANDOM = new Random();
+    private LineGraphSeries<DataPoint> series;
+    private int lastX = 0;
 
     /**
      * onCreate() = when activity is first initialized
@@ -47,9 +47,21 @@ public class LiveEKGActivity extends AppCompatActivity {
         // Get ekg chart view
         GraphView ekgChart = findViewById(R.id.ekgGraphView);
 
+
         // TEST data
-        mSeries1 = new LineGraphSeries<>(generateData());
-        ekgChart.addSeries(mSeries1);
+        //series = new LineGraphSeries<>(generateData());
+        series = new LineGraphSeries<>();
+        ekgChart.addSeries(series);
+
+        // Customize viewport
+        Viewport viewport = ekgChart.getViewport();
+        viewport.setYAxisBoundsManual(true);
+        viewport.setMinY(-1);
+        viewport.setMaxY(10);
+        viewport.setScrollable(true);
+        viewport.setXAxisBoundsManual(true);
+        viewport.setMinX(0);
+        viewport.setMaxX(50);
 
         // Initiate data/device connection
 
@@ -112,41 +124,36 @@ public class LiveEKGActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mTimer1 = new Runnable() {
+
+        new Thread(new Runnable() {
+
             @Override
             public void run() {
-                mSeries1.resetData(generateData());
-                mHandler.postDelayed(this, 300);
+                // we add 100 new entries
+                for (int i = 0; i < 100; i++) {
+                    runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            addEntry();
+                        }
+                    });
+
+                    // sleep to slow down the add of entries
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        // manage error ...
+                    }
+                }
             }
-        };
-        mHandler.postDelayed(mTimer1, 300);
+        }).start();
     }
 
-    @Override
-    public void onPause() {
-        mHandler.removeCallbacks(mTimer1);
-        //mHandler.removeCallbacks(mTimer2);
-        super.onPause();
-    }
-
-    //####### Generate random data for testing #####
-    private DataPoint[] generateData() {
-        int count = 30;
-        DataPoint[] values = new DataPoint[count];
-        for (int i=0; i<count; i++) {
-            double x = i;
-            double f = mRand.nextDouble()*0.15+0.3;
-            double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
-            DataPoint v = new DataPoint(x, y);
-            values[i] = v;
-        }
-        return values;
-    }
-
-    double mLastRandom = 2;
-    Random mRand = new Random();
-    private double getRandom() {
-        return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
+    // add random data to graph
+    private void addEntry() {
+        // here, we choose to display max 10 points on the viewport and we scroll to end
+        series.appendData(new DataPoint(lastX++, RANDOM.nextDouble() * 10d), true, 50);
     }
 
 
