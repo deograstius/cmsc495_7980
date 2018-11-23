@@ -26,8 +26,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def nav_version = "1.0.0-alpha01"
+    implementation "android.arch.navigation:navigation-fragment:$nav_version"
+    implementation "android.arch.navigation:navigation-ui:$nav_version"
+
     //Base SDK
     implementation 'com.amazonaws:aws-android-sdk-core:2.8.0'
+
     //AppSync SDK
     implementation 'com.amazonaws:aws-android-sdk-appsync:2.6.28'
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
