@@ -51,7 +51,6 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintHeight_default="wrap"
             app:layout_constraintLeft_toRightOf="@+id/textHeartRateLabel"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 

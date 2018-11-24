@@ -17,22 +17,31 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.TextView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import java.util.Iterator;
 import java.util.Random;
 
 public class LiveEKGActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    //private List<Double> ekgData;  // EKG data values
     private static final int valuesPerSecond = 200;  // Number of EKG data values per second (hertz)
-    //private double heartRate;  // Heart rate in bpm
+
+    // ***** Heart rate setup variables to adjust sensitivity *****
+    // Standard deviation of recent 6 values that signifies a beat
+    private static final double beatSensitivity = 10;
+
+    // Counter (num values) delay before checking for beats again (to ignore duplicate counts from the same beat)
+    private static final int delayBetweenBeatCheck = 25;
 
     private static final Random RANDOM = new Random();
-    private LineGraphSeries<DataPoint> series;
+    private final LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
     private int lastX = 0;
+    double totalForMean;  // Total of all Y values for use in calculating mean
+    TextView textBPM; // TextView of bpm output
 
     /**
      * onCreate() = when activity is first initialized
@@ -47,21 +56,21 @@ public class LiveEKGActivity extends AppCompatActivity {
         // Get ekg chart view
         GraphView ekgChart = findViewById(R.id.ekgGraphView);
 
+        // Get BPM TextView
+         textBPM = findViewById(R.id.textBPM);
 
-        // TEST data
-        //series = new LineGraphSeries<>(generateData());
-        series = new LineGraphSeries<>();
+        // Add mock TEST data to chart
         ekgChart.addSeries(series);
 
         // Customize viewport
         Viewport viewport = ekgChart.getViewport();
         viewport.setYAxisBoundsManual(true);
-        viewport.setMinY(-1);
-        viewport.setMaxY(10);
+        viewport.setMinY(-75);
+        viewport.setMaxY(205);
         viewport.setScrollable(true);
         viewport.setXAxisBoundsManual(true);
         viewport.setMinX(0);
-        viewport.setMaxX(50);
+        viewport.setMaxX(1000);
 
         // Initiate data/device connection
 
@@ -117,8 +126,7 @@ public class LiveEKGActivity extends AppCompatActivity {
                 }// End switch statement
             }// End onNavigationItemSelected
         });// End closure
-    } // onCreate()
-
+    } // onCreate() -----------------------------------------------------------
 
 
     @Override
@@ -129,8 +137,18 @@ public class LiveEKGActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                // we add 100 new entries
-                for (int i = 0; i < 100; i++) {
+                Iterator<DataPoint> dataPointIterator;
+                int millisDelay = 1000/valuesPerSecond;  // Delay between each mock value created
+                int heartRate;  // Heart rate in bpm
+                double[] values = new double[10]; // Last 10 ekg values
+                int[] beatIndexes = new int[5];
+                int index;
+                int lastBeatIndex = 0;  // the index (i) of the last beat
+                int numBeats = 0;
+                double standardDev;
+
+                // Add 5000 new entries
+                for (int i = 0; i < 5000; i++) {
                     runOnUiThread(new Runnable() {
 
                         @Override
@@ -139,22 +157,123 @@ public class LiveEKGActivity extends AppCompatActivity {
                         }
                     });
 
-                    // sleep to slow down the add of entries
+                    // ***** Determine heart beat *****
+                    if (i > 4) {
+                        // Retrieve last 6 data points
+                        synchronized (series) {
+                            // 4 data points + a value on each end added via getValues()
+                            dataPointIterator = series.getValues((double) (i - 4), (double) (i));
+
+                            index = 0;
+                            while (dataPointIterator.hasNext()) {
+                                values[index] = dataPointIterator.next().getY();
+                                index++;
+                            }
+                        }
+
+                        // Check standard deviation of last 6 values
+                        // and make sure this potential beat
+                        standardDev = standDeviation(values, (totalForMean/(i + 1)));
+
+                        if ((standardDev > beatSensitivity)
+                                    && (i > (lastBeatIndex + delayBetweenBeatCheck))) {
+                            // This is a beat
+                            numBeats++;
+
+                            if (numBeats > 5) {
+                                // Shift array 1 beat to hold the time of the last 5 beats
+                                System.arraycopy(beatIndexes, 1, beatIndexes, 0, 4);
+                                beatIndexes[4] = i;
+
+                                // 6 beats recorded, so calculate heart rate
+                                heartRate = 300/((beatIndexes[4] - beatIndexes[0]) * millisDelay/1000);
+
+                                // final version of heartRate so it can be used in the UI thread
+                                final int hRate = heartRate;
+
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        // Output heart rate
+                                        textBPM.setText("" + hRate);
+                                    }
+                                });
+
+                            } else {
+                                beatIndexes[numBeats - 1] = i;
+                            }
+
+                            lastBeatIndex = i;
+                        }
+                    }
+
+                    // sleep to slow down the add of entries. 5 millis delay = 200hz
                     try {
-                        Thread.sleep(200);
+                        Thread.sleep(millisDelay);
                     } catch (InterruptedException e) {
                         // manage error ...
                     }
                 }
             }
         }).start();
+    } // onResume() --------------------------------------------------
+
+
+    /**
+     * Calculates standard deviation
+     * @param numArray Array of doubles
+     * @return standard deviation of array values
+     */
+    public static double standDeviation(double dblValues[], double mean) {
+        double sum = 0.0;
+        double standardDeviation = 0.0;
+
+        int length = dblValues.length;
+
+        /*
+        for(double num : dblValues) {
+            sum += num;
+        }
+
+        double mean = sum/length;
+        */
+
+        for(double num: dblValues) {
+            standardDeviation += Math.pow(num - mean, 2);
+        }
+
+        return Math.sqrt(standardDeviation/length);
     }
+
 
     // add random data to graph
     private void addEntry() {
-        // here, we choose to display max 10 points on the viewport and we scroll to end
-        series.appendData(new DataPoint(lastX++, RANDOM.nextDouble() * 10d), true, 50);
-    }
+        DataPoint dataPoint;  // New value
+
+        // Create and display max 1000 values on the viewport and scroll to end
+        // Display a fake beat every (170/200) seconds
+        int mod = lastX % 170;
+
+        if ((mod > 3 ) && (mod < 7)) {
+            dataPoint = new DataPoint(lastX++, RANDOM.nextDouble() * 200);
+        } else if ((mod > 0) && (mod < 9)) {
+            dataPoint = new DataPoint(lastX++, RANDOM.nextDouble() * 80);
+        } else if ((mod > 9) && (mod < 12)) {
+            dataPoint = new DataPoint(lastX++, RANDOM.nextDouble() * -70);
+        } else if ((mod > 11) && (mod < 14)) {
+            dataPoint = new DataPoint(lastX++, RANDOM.nextDouble() * -20);
+        } else {
+            dataPoint = new DataPoint(lastX++, RANDOM.nextDouble() * 7);
+        }
+
+        totalForMean += dataPoint.getY();
+
+        // Add value to viewport and scroll to end
+        synchronized (series) {
+            series.appendData(dataPoint, true, 1000);
+        }
+    } // addEntry() ---------------------------------------------------
 
 
     @Override
@@ -177,7 +296,5 @@ public class LiveEKGActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }// End switch statement
-
     }// End onOptionsItemSelected() Method
-
 } // LiveEKGActivity class
