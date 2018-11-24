@@ -13,7 +13,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="@string/log_in">
+            android:label="@string/log_in"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -23,16 +24,20 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:label="@string/sign_up" />
+            android:label="@string/sign_up"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HistoryActivity"
-            android:label="@string/history" />
+            android:label="@string/history"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RhythmsActivity"
-            android:label="@string/rhythms" />
+            android:label="@string/rhythms"
+            android:screenOrientation="unspecified"/>
         <activity
             android:name=".LiveEKGActivity"
-            android:label="@string/live_ekg" />
+            android:label="@string/live_ekg"
+            android:screenOrientation="unspecified"/>
     </application>
 
 </manifest>

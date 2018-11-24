@@ -21,25 +21,10 @@
             android:background="@color/white"
             android:theme="@style/NavigationMenuTheme" />
 
-
         <com.jjoe64.graphview.GraphView
             android:id="@+id/ekgGraphView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_constraintTop_toBottomOf="@+id/textBPM" />
-
-        <TextView
-            android:id="@+id/textConditions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/normal"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textConditionHeader" />
+            android:layout_height="0dp" />
 
         <TextView
             android:id="@+id/textBPM"
@@ -51,34 +36,22 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@+id/textHeartRateLabel"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <TextView
-            android:id="@+id/textConditionHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="@string/predicted_condition_s"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ekgGraphView" />
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constraintRight_toRightOf="@+id/ekgGraphView"
+            app:layout_constraintTop_toTopOf="@+id/ekgGraphView" />
 
         <TextView
             android:id="@+id/textHeartRateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="100dp"
             android:paddingTop="14dp"
-            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
             android:text="@string/heart_rate"
             android:textAlignment="textEnd"
             android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintRight_toLeftOf="@+id/textBPM"
+            app:layout_constraintTop_toTopOf="@+id/ekgGraphView" />
 
     </android.support.constraint.ConstraintLayout>
 

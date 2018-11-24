@@ -25,5 +25,9 @@
     <string name="history">History</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="normal">Normal</string>
-    <string name="bpm">bpm</string>
+    <string name="bpm">--</string>
+    <string name="predicted_condition_s">Predicted Condition(s)</string>
+    <string name="heart_rate">Heart rate:</string>
+    <string name="condition_information">Condition Information</string>
 </resources>
+
