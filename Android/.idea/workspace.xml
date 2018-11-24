@@ -55,8 +55,8 @@
       <file leaf-file-name="RhythmsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/capstone/cmsc495/ekganalyzer/RhythmsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2329">
-              <caret line="175" selection-start-line="175" selection-end-line="175" />
+            <state relative-caret-position="153">
+              <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
               <folding>
                 <element signature="e#5394#5555#0" expanded="true" />
                 <element signature="e#5554#5555#0" expanded="true" />
@@ -2691,8 +2691,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/capstone/cmsc495/ekganalyzer/RhythmsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2329">
-          <caret line="175" selection-start-line="175" selection-end-line="175" />
+        <state relative-caret-position="153">
+          <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
           <folding>
             <element signature="e#5394#5555#0" expanded="true" />
             <element signature="e#5554#5555#0" expanded="true" />

@@ -110,7 +110,7 @@ public class RhythmsActivity extends AppCompatActivity {
         graph.getViewport().setScalable(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(9);
-        graph.getViewport().setMaxX(30);
+        graph.getViewport().setMaxX(17);
         graph.getViewport().setMinX(0);
 
     }// End onCreate() Method
@@ -121,28 +121,27 @@ public class RhythmsActivity extends AppCompatActivity {
      */
     private DataPoint[] generateData() {
 
-        int count = 1700;
+        int count = 1600;
         int x = 0;
         DataPoint[] dataPoints = new DataPoint[count];
         for(int i = 0; i < count;){
             dataPoints[i++] = new DataPoint(x, 4);
-            dataPoints[i++] = new DataPoint(x + 2,4);
-            dataPoints[i++] = new DataPoint(x + 2.9,6);
-            dataPoints[i++] = new DataPoint(x + 3.1, 6);
             dataPoints[i++] = new DataPoint(x + 4,4);
+            dataPoints[i++] = new DataPoint(x + 4.9,6);
+            dataPoints[i++] = new DataPoint(x + 5.1, 6);
             dataPoints[i++] = new DataPoint(x + 6,4);
-            dataPoints[i++] = new DataPoint(x + 6.5,3);
-            dataPoints[i++] = new DataPoint(x + 6.7,3);
-            dataPoints[i++] = new DataPoint(x + 7.5,8);
-            dataPoints[i++] = new DataPoint(x + 7.7,8);
+            dataPoints[i++] = new DataPoint(x + 8,4);
             dataPoints[i++] = new DataPoint(x + 8.5,3);
             dataPoints[i++] = new DataPoint(x + 8.7,3);
-            dataPoints[i++] = new DataPoint(x + 9.2,4);
-            dataPoints[i++] = new DataPoint(x + 11,4);
-            dataPoints[i++] = new DataPoint(x + 12,7);
-            dataPoints[i++] = new DataPoint(x + 12.2,7);
+            dataPoints[i++] = new DataPoint(x + 9.5,8);
+            dataPoints[i++] = new DataPoint(x + 9.7,8);
+            dataPoints[i++] = new DataPoint(x + 10.5,3);
+            dataPoints[i++] = new DataPoint(x + 10.7,3);
+            dataPoints[i++] = new DataPoint(x + 11.2,4);
             dataPoints[i++] = new DataPoint(x + 13,4);
-            x += 13;
+            dataPoints[i++] = new DataPoint(x + 14,7);
+            dataPoints[i++] = new DataPoint(x + 14.2,7);
+            x += 15;
         }
 
         return dataPoints;
