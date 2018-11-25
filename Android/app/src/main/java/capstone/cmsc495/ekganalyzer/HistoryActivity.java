@@ -13,20 +13,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HistoryActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Inflate the view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        recyclerView = findViewById(R.id.historyList);
+
+        List<String> input = new ArrayList<>();
+        for (int i = 10; i < 29; i++) {
+            input.add("11/24/2018 10:" + i + ":" + (i*2));
+        }// define an adapter
+        mAdapter = new HistoryAdapter(input);
+        recyclerView.setAdapter(mAdapter);
 
         // Set up a custom tool bar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -80,6 +94,10 @@ public class HistoryActivity extends AppCompatActivity {
             }// End onNavigationItemSelected
         });// End closure
     }// End onCreate() Method
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

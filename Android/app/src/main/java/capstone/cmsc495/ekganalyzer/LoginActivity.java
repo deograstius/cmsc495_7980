@@ -34,5 +34,5 @@ public class LoginActivity extends AppCompatActivity {
     public void goToHistoryActivity(View view) {
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
-    }// End goToSignUpActivity() class
+    }// End goToHistoryActivity() class
 }// End LoginActivity class

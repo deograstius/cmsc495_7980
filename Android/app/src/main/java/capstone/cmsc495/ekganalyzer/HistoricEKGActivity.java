@@ -1,10 +1,10 @@
 package capstone.cmsc495.ekganalyzer;
 
 /**
- * @Purpose this activity holds the Live EKG
+ * @Purpose this activity holds the Historic EKG
  * @author: Deo & Jon Simmons
  * @version 1
- * @since 11-21-2018
+ * @since 11-24-2018
  */
 
 import android.content.Intent;
@@ -25,31 +25,23 @@ import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.Iterator;
 import java.util.Random;
 
-public class LiveEKGActivity extends AppCompatActivity {
+public class HistoricEKGActivity extends AppCompatActivity {
 
     private static final int valuesPerSecond = 200;  // Number of EKG data values per second (hertz)
-    // ***** Heart rate setup variables to adjust sensitivity *****
-    // Standard deviation of recent 6 values that signifies a beat
-    //private static final double beatSensitivity = 10;
-    // Counter (num values) delay before checking for beats again (to ignore duplicate counts from the same beat)
-    //private static final int delayBetweenBeatCheck = 25;
     private static final Random RANDOM = new Random();
     private final LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-    //double totalForMean;  // Total of all Y values for use in calculating mean
-
     private int numBeats;  // Number of heartbeats
     private int timeOfLastBeat = 0;
     private int[] timeBetweenLast6Beats = {800,800,800,800,800,800};
     private int millisecsPassed;  // Milliseconds of time passed so far
     private int heartRate = 0;  // Heart rate in bpm
-    TextView textHeartRate;  // TextView for HeartRate output
-    TextView textConditions;  // TextView for Conditions output
+    TextView textHeartRate; // TextView of bpm output
+    TextView textConditions;  // TextView of conditions output
     private DrawerLayout drawerLayout;
     private int lastX = 0;
-
+    private Intent intent;
 
     /**
      * onCreate() = when activity is first initialized
@@ -59,7 +51,14 @@ public class LiveEKGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // Inflate the view
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live_ekg);
+
+        // Get intent sent to this activity
+        intent = getIntent();
+
+        // Set title to history item selected
+        setTitle(intent.getStringExtra("history_date_time"));
+
+        setContentView(R.layout.activity_historic_ekg);
 
         // Get needed TextView and GraphView objects
         textHeartRate = findViewById(R.id.textBPM);
@@ -70,6 +69,7 @@ public class LiveEKGActivity extends AppCompatActivity {
             // Update Condition Info
             textConditions.setText("Condition Findings Here");
         }
+
 
         // Add mock TEST data to chart
         ekgChart.addSeries(series);
@@ -87,6 +87,7 @@ public class LiveEKGActivity extends AppCompatActivity {
         // Initiate data/device connection
 
 
+
         // Set up a custom tool bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -99,9 +100,10 @@ public class LiveEKGActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }// End if
 
+
         // Set the drawer layout A.K.A the navigation bar
         drawerLayout = findViewById(R.id.drawer_layout);
-        final LiveEKGActivity thisActivity = this;
+        final HistoricEKGActivity thisActivity = this;
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             // Portrait view navigation bar
@@ -119,10 +121,11 @@ public class LiveEKGActivity extends AppCompatActivity {
                             intent = new Intent(thisActivity, RhythmsActivity.class);
                             startActivity(intent);
                             return true;
-                        case R.id.historyList:
-                            intent = new Intent(thisActivity, HistoryActivity.class);
+                        case R.id.live_ekg:
+                            intent = new Intent(thisActivity, LiveEKGActivity.class);
                             startActivity(intent);
                             return true;
+
                         case R.id.log_out:
                             // ##### TO DO: Log user out
 
@@ -136,9 +139,32 @@ public class LiveEKGActivity extends AppCompatActivity {
                     }// End switch statement
                 }// End onNavigationItemSelected
             });// End closure
-        }
-    } // onCreate() -----------------------------------------------------------
+        } // if portrait view
+    }// End onCreate() Method
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                drawerLayout.openDrawer(Gravity.START);
+                return true;
+            case R.id.live_ekg:
+                intent = new Intent(this, LiveEKGActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.rhythms:
+                intent = new Intent(this, RhythmsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }// End switch statement
+
+    }// End onOptionsItemSelected() Method
 
     @Override
     public void onResume() {
@@ -219,27 +245,4 @@ public class LiveEKGActivity extends AppCompatActivity {
             series.appendData(dataPoint, true, 1000);
         }
     } // addEntry() ---------------------------------------------------
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(Gravity.START);
-                return true;
-            case R.id.historyList:
-                intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.rhythms:
-                intent = new Intent(this, RhythmsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }// End switch statement
-    }// End onOptionsItemSelected() Method
-} // LiveEKGActivity class
+} // HistoricEKGActivity class

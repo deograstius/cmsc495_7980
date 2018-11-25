@@ -23,11 +23,12 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/historyList"
-            android:layout_width="368dp"
-            android:layout_height="495dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="20dp"
             android:scrollbars="vertical"
             android:visibility="visible"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
