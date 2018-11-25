@@ -1,14 +1,56 @@
 {
-    "providers": {
-        "awscloudformation": {
-            "AuthRoleName": "ndroid-20181113064224-authRole",
-            "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181113064224-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "ndroid-20181113064224-deployment",
-            "UnauthRoleName": "ndroid-20181113064224-unauthRole",
-            "StackName": "ndroid-20181113064224",
-            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181113064224/31d69a20-e739-11e8-8e2f-500c20fcaa99"
-        }
-    }
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "ndroid-20181125140655-authRole",
+			"UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125140655-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125140655-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "ndroid-20181125140655-deployment",
+			"UnauthRoleName": "ndroid-20181125140655-unauthRole",
+			"StackName": "ndroid-20181125140655",
+			"StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181125140655/478f22a0-f0e5-11e8-9049-500c28b3e2d2"
+		}
+	},
+	"auth": {
+		"cognito0607e556": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ndroid-20181125140655-deployment/amplify-cfn-templates/auth/cognito0607e556-cloudformation-template.yml",
+				"logicalId": "authcognito0607e556"
+			},
+			"lastPushTimeStamp": "2018-11-25T19:14:44.002Z",
+			"output": {
+				"AppClientSecret": "6md38e4r52oe6keu7nvpcumach94t5m17padmbv8omn33tcenai",
+				"UserPoolId": "us-east-1_Mg0lvRD8A",
+				"AppClientIDWeb": "n6vkh4gc0u798taie9utu17vb",
+				"AppClientID": "mne9k0isg7fi15796driqs95c",
+				"IdentityPoolId": "us-east-1:6f10bf55-eb75-427e-a0d9-08d308b77f42",
+				"IdentityPoolName": "cognito0607e556_identitypool_0607e556",
+				"UserPoolName": "cognito0607e556_userpool_0607e556"
+			},
+			"lastPushDirHash": "IEwYQz62+yijO104CM8Sx2xRTOk="
+		}
+	},
+	"api": {
+		"EKGAPI": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS",
+				"GraphQLAPIIdOutput": "t7ijzzpvu5afnlw6b3l5x3f76m",
+				"GraphQLAPIEndpointOutput": "https://sm2ctzindzhlbnvbqa6sr4rxtm.appsync-api.us-east-1.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-fgbuqbmgyjd6fj4ynlgpiytgeq",
+				"AuthCognitoUserPoolIdOutput": "us-east-1_Mg0lvRD8A",
+				"AuthCognitoUserPoolNativeClientId": "See UserPool: us-east-1_Mg0lvRD8A",
+				"AuthCognitoUserPoolJSClientId": "See UserPool: us-east-1_Mg0lvRD8A"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ndroid-20181125140655-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apiEKGAPI"
+			},
+			"lastPushTimeStamp": "2018-11-25T19:14:44.002Z",
+			"lastPushDirHash": "6MaoVXCkcfPnqdrCnQzHhfpk/mc="
+		}
+	}
 }

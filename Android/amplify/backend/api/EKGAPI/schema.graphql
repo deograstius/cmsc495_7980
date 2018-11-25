@@ -1,0 +1,5 @@
+type User @model {
+  sensorID: String!
+  email: String!
+  password: String!
+}

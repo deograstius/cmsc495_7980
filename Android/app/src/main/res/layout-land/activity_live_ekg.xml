@@ -14,17 +14,10 @@
         android:layout_height="match_parent"
         tools:context=".LiveEKGActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:theme="@style/NavigationMenuTheme" />
-
         <com.jjoe64.graphview.GraphView
             android:id="@+id/ekgGraphView"
             android:layout_width="match_parent"
-            android:layout_height="0dp" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/textBPM"
@@ -36,7 +29,6 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintHeight_default="wrap"
             app:layout_constraintRight_toRightOf="@+id/ekgGraphView"
             app:layout_constraintTop_toTopOf="@+id/ekgGraphView" />
 
@@ -54,14 +46,5 @@
             app:layout_constraintTop_toTopOf="@+id/ekgGraphView" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:theme="@style/NavigationMenuTheme"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/navigation_menu" />
 
 </android.support.v4.widget.DrawerLayout>

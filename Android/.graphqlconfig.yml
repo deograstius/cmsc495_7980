@@ -1,0 +1,16 @@
+projects:
+  EKGAPI:
+    schemaPath: app\src\main\graphql\schema.json
+    includes:
+      - user
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: ''
+        generatedFileName: ''
+        docsFilePath: app\src\main\graphql\com\amazonaws\amplify\generated\graphql
+        graphQLApiId: t7ijzzpvu5afnlw6b3l5x3f76m
+      endpoints:
+        prod: >-
+          https://sm2ctzindzhlbnvbqa6sr4rxtm.appsync-api.us-east-1.amazonaws.com/graphql

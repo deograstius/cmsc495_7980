@@ -1,4 +1,4 @@
 {
-    "useProfile": true,
-    "profileName": "default"
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\deogr\\.amplify\\awscloudformation\\dkDCzU8a7o"
 }

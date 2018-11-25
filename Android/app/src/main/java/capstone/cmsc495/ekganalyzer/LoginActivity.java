@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -34,5 +37,5 @@ public class LoginActivity extends AppCompatActivity {
     public void goToHistoryActivity(View view) {
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
-    }// End goToSignUpActivity() class
+    }// End goToHistoryActivity() class
 }// End LoginActivity class

@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "cmsc4957980-20181125132708-authRole",
+            "UnauthRoleArn": "arn:aws:iam::871036824499:role/cmsc4957980-20181125132708-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::871036824499:role/cmsc4957980-20181125132708-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "cmsc4957980-20181125132708-deployment",
+            "UnauthRoleName": "cmsc4957980-20181125132708-unauthRole",
+            "StackName": "cmsc4957980-20181125132708",
+            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/cmsc4957980-20181125132708/b8e92320-f0df-11e8-a555-503acac41efd"
+        }
+    }
+}

@@ -1,7 +1,7 @@
 {
     "projectName": "Android",
     "projectPath": "C:\\Users\\deogr\\Desktop\\cmsc495_7980\\Android",
-    "defaultEditor": "sublime",
+    "defaultEditor": "code",
     "frontendHandler": {
         "android": "C:\\Users\\deogr\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-frontend-android"
     },
