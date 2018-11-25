@@ -1,0 +1,23 @@
+{
+  "name": "datServ",
+  "version": "0.0.0",
+  "description": "Takes sensor data and exposes it via a REST API"
+  "main": "datServ.js",
+  "dependencies": {
+    "rpi-gpio": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Andrew Young",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
