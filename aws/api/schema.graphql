@@ -1,0 +1,64 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Account {
+  archive: Archive
+  device: Device
+  name: String
+  session: Session
+  userId: ID!
+}
+
+type Archive {
+  archiveId: ID!
+  records: [Record]
+}
+
+type Device {
+  deviceId: ID!
+  deviceStatus: String
+  user: Account
+}
+
+type Mutation {
+  accountCreate(userId: ID!): Account
+  addDeviceUser(userId: ID!): Device
+  deviceCreate(deviceId: ID!): Device
+  recordCreate(record: CreateRecordsInput): Record
+  recordUpdate(record: CreateRecordsInput, recordId: ID!): Record
+  sessionCreate(recordID: ID, sessionId: ID!, userId: ID): Session
+}
+
+# Query Container
+type Query {
+  getAccount(userId: ID): Account
+  getDevice(deviceId: ID): Device
+  getRecords(sessionId: ID!): Record
+  getSession(userId: String): Session
+}
+
+type Record {
+  frequency: Int
+  recordId: ID!
+  records: [Float]
+  timestamp: AWSTimestamp
+}
+
+type Session {
+  record: Record
+  sessionId: ID!
+}
+
+type Subscription {
+  #  Subscribe to a session via MQTT service provided by AWS-SDK
+  ##### Events are created when a sessions record is updated
+  subscribeToSession(SessionId: ID!, UserId: ID!): Record @aws_subscribe(mutations : ["recordUpdate"])
+}
+
+input CreateRecordsInput {
+  frequency: Int
+  records: [Float]
+}
