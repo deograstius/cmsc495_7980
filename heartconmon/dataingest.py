@@ -32,33 +32,29 @@ cats = categories.keys()
 # Utility function to split a data pool up into one-second chunks
 # with an eighth of a second step, producing around 8 samples for
 # each one second block (minus end-padding).
-def make_segments(data, targ, step=100, samples=200):
+def make_segments(data, targ, step=800, samples=800):
     segs = []
     labs = []
     for i in range(0, len(data) - samples, step):
         channel_data = []
-        channel_labs = []
         for cv in data[i:i+samples]:
             channel_data.append([np.asarray(cv)])
-        segs.append(np.asarray(channel_data))
+        cd = np.asarray(channel_data)
+        mn, mx = cd.min(), cd.max()
+        cd = (cd - mn) / (mx - mn)
+        segs.append(cd)
         labs.append(targ)
     return segs, labs
-    
-# makes a targets array for the categorization
-def make_target(n):
-    targ = np.zeros(len(cats))
-    targ[n] = 1
-    return targ
 
 # this needs to be refactored big-time. Originally it was
 # just ripped out of the research notebook.
-def get_data():
+def get_data(root_path):
     train_data = []
     train_labs = []
     # we need to generate the training data from the raw physionet data
     for c in cats:
-        targ = make_target(categories[c])
-        path = './heartconmon/physionet/' + c
+        targ = categories[c]
+        path = root_path + c
         files = os.listdir(path)
         time_pool = []
         for f in files:
@@ -66,6 +62,12 @@ def get_data():
                 for l in f.readlines():
                     time_val, sep, sig_val = l.partition(',')
                     time_pool.append(float(sig_val))
+            # remove me
+            # remove me
+            # remove me
+            # remove me
+            # remove me
+            # break
         time_pool = np.asarray(time_pool)
         segs, labs = make_segments(time_pool, targ)
         for i in range(0, len(segs)):
