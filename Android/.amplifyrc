@@ -1,14 +1,14 @@
 {
     "providers": {
         "awscloudformation": {
-            "AuthRoleName": "ndroid-20181125140655-authRole",
-            "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125140655-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125140655-authRole",
+            "AuthRoleName": "ndroid-20181125222557-authRole",
+            "UnauthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125222557-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::871036824499:role/ndroid-20181125222557-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "ndroid-20181125140655-deployment",
-            "UnauthRoleName": "ndroid-20181125140655-unauthRole",
-            "StackName": "ndroid-20181125140655",
-            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181125140655/478f22a0-f0e5-11e8-9049-500c28b3e2d2"
+            "DeploymentBucketName": "ndroid-20181125222557-deployment",
+            "UnauthRoleName": "ndroid-20181125222557-unauthRole",
+            "StackName": "ndroid-20181125222557",
+            "StackId": "arn:aws:cloudformation:us-east-1:871036824499:stack/ndroid-20181125222557/fd57cbb0-f12a-11e8-a399-0a62acea77ae"
         }
     }
 }

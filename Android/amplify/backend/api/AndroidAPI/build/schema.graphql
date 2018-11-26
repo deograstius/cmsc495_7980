@@ -1,7 +1,7 @@
 type User {
-  sensorID: String!
-  email: String!
+  email: ID!
   password: String!
+  sensorID: String!
 }
 
 enum ModelSortDirection {
@@ -70,9 +70,9 @@ input ModelBooleanFilterInput {
 }
 
 input ModelUserFilterInput {
-  sensorID: ModelStringFilterInput
-  email: ModelStringFilterInput
+  email: ModelIDFilterInput
   password: ModelStringFilterInput
+  sensorID: ModelStringFilterInput
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
   not: ModelUserFilterInput
@@ -84,15 +84,15 @@ type Query {
 }
 
 input CreateUserInput {
-  sensorID: String!
-  email: String!
+  email: ID!
   password: String!
+  sensorID: String!
 }
 
 input UpdateUserInput {
-  sensorID: String
-  email: String
+  email: ID
   password: String
+  sensorID: String
 }
 
 input DeleteUserInput {

@@ -1,22 +1,22 @@
 # this is an auto generated file. This will be overwritten
 subscription OnCreateUser {
   onCreateUser {
-    sensorID
     email
     password
+    sensorID
   }
 }
 subscription OnUpdateUser {
   onUpdateUser {
-    sensorID
     email
     password
+    sensorID
   }
 }
 subscription OnDeleteUser {
   onDeleteUser {
-    sensorID
     email
     password
+    sensorID
   }
 }
